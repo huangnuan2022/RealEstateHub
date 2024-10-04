@@ -1,0 +1,96 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/javascript-node
+{
+  "name": "Node.js",
+
+  // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:0-18",
+
+  // Features to add to the dev container. More info: https://containers.dev/features.
+  "features": {
+    "ghcr.io/azure/azure-dev/azd:latest": {},
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "18.15.0"
+    },
+    "ghcr.io/devcontainers-contrib/features/postgres-asdf:1": {},
+    "ghcr.io/devcontainers/features/docker-in-docker:1": {
+      "version": "20.10.23",
+      "moby": "false",
+      "dockerDashComposeVersion": "v2"
+    },
+    "ghcr.io/devcontainers/features/azure-cli:1": {
+      "version": "latest",
+      "installBicep": true
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {
+      "version": "latest"
+    }
+  },
+
+  // add labels to ports
+  "portsAttributes": {
+    "4280": {
+      "label": "Portal App",
+      "onAutoForward": "notify"
+    },
+    "3000": {
+      "label": "Blog",
+      "onAutoForward": "notify"
+    },
+    "1337": {
+      "label": "Strapi CMS",
+      "onAutoForward": "notify"
+    },
+    "4242": {
+      "label": "Stripe API",
+      "onAutoForward": "notify"
+    },
+    "4300": {
+      "label": "Web PubSub API",
+      "onAutoForward": "notify"
+    }
+  },
+
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  "forwardPorts": [4280, 4242, 3000, 1337],
+
+  // Use 'postCreateCommand' to run commands after the container is created.
+  "postCreateCommand": "bash .devcontainer/post-create-command.sh",
+
+  // Configure tool-specific properties.
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "humao.rest-client",
+        "ms-azuretools.vscode-bicep",
+        "ms-azuretools.vscode-cosmosdb",
+        "ms-azuretools.vscode-azurecontainerapps",
+        "IronGeek.vscode-env",
+        "timonwong.shellcheck",
+        "ms-azuretools.vscode-docker",
+        "ms-azuretools.vscode-azurefunctions",
+        "ms-azuretools.vscode-azurestaticwebapps",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "ms-azuretools.azure-dev",
+        "GitHub.vscode-pull-request-github",
+        "ms-azuretools.vscode-bicep",
+        "angular.ng-template",
+        "42Crunch.vscode-openapi",
+        "EditorConfig.EditorConfig",
+        "GitHub.copilot",
+        "ms-playwright.playwright"
+      ]
+    }
+  },
+
+  // At least 8gb of RAM is needed due containers
+  "hostRequirements": {
+    "cpus": 4,
+    "memory": "8gb",
+    "storage": "32gb"
+  }
+
+  // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+  // "remoteUser": "root"
+}

@@ -1,0 +1,54 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
+
+name: RealEstateHub
+metadata:
+    template: azd-init@1.10.1
+
+services:
+  portal:
+    project: "PLACEHOLDER_PROJECT_PATH"
+    dist: "PLACEHOLDER_DIST_PATH" 
+    language: ts
+    host: staticwebapp
+    module: "PLACEHOLDER_MODULE_PATH"
+    hooks:
+      postpackage:
+        shell: sh
+        interactive: true
+        run: "PLACEHOLDER_PREDEPLOY_SCRIPT" 
+
+  notifications:
+    project: "PLACEHOLDER_PROJECT_PATH"
+    docker:
+      context: "PLACEHOLDER_DOCKER_CONTEXT" 
+      path: "PLACEHOLDER_DOCKERFILE_PATH" 
+    language: js
+    host: containerapp
+    module: "PLACEHOLDER_MODULE_PATH"
+
+  api:
+    project: "PLACEHOLDER_PROJECT_PATH"
+    language: ts
+    host: function
+    module: "PLACEHOLDER_MODULE_PATH"
+
+  cms:
+    project: "PLACEHOLDER_PROJECT_PATH"
+    host: containerapp
+    language: js
+    module: "PLACEHOLDER_MODULE_PATH"
+
+  blog:
+    project: "PLACEHOLDER_PROJECT_PATH"
+    host: containerapp
+    language: js
+    module: "PLACEHOLDER_MODULE_PATH"
+
+  stripe:
+    project: "PLACEHOLDER_PROJECT_PATH"
+    host: containerapp
+    language: js
+    docker:
+      context: "PLACEHOLDER_DOCKER_CONTEXT"
+    module: "PLACEHOLDER_MODULE_PATH"
+
